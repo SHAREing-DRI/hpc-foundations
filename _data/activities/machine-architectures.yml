@@ -1,0 +1,149 @@
+title: "Machine Architectures (Flynn's Taxonomy)"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+    - id: categories
+      type: "multiple-select"
+      question: "Flynn’s taxonomy categorises computer architectures based on (select which are true):"
+      options:
+      - "How many instruction streams the system can execute at once."
+      - "How many data streams the system can process simultaneously."
+      - "How many processors the system can run at once."
+      - "How many threads the system can run at once."
+      - "How much data the system can process simultaneously."
+      - "What type of data the system can process simultaneously."
+      answer:
+      - 0
+      - 1
+      correctFeedback: "Correct! Flynn’s taxonomy classifies computer architectures based on the number of instruction streams and data streams they can process simultaneously."
+      incorrectFeedback: "Not quite."
+
+    - id: sisd
+      type: "multiple-select"
+      question: "SISD stands for (select which are true):"
+      options:
+      - "Single Instruction, Single Data"
+      - "Slow Instruction Stream Driver."
+      - "Swiss International Scientific School in Dubai"
+      - "Serial Instruction, Single Data"
+      - "Slow Instruction Stream Driver"
+      answer:
+      - 0
+      - 2
+      correctFeedback: |
+        Correct! Single Instruction, Single Data is the actual definition of SISD in Flynn’s Taxonomy. It describes a sequential processor that executes one instruction stream operating on one data stream - the traditional Von Neumann architecture.
+        And yes... Swiss International Scientific School in Dubai is indeed a real institution whose acronym is SISD. So it’s not wrong, just a bit of a cheeky inclusion here!
+
+      incorrectFeedback: "Not quite."
+
+
+    - id: simd
+      type: "multiple-select"
+      question: "SIMD stands for (select which are true):"
+      options:
+      - "Single instruction, mixed data"
+      - "Serial instruction, multiple data"
+      - "Self-interacting dark matter"
+      - "Scottish Index of Multiple Deprivation"
+      - "Single Instruction, Multiple Data"
+      answer:
+      - 3
+      - 4
+      correctFeedback: |
+        Correct! Single Instruction, Multiple Data Correct. This is the canonical definition of SIMD in Flynn’s Taxonomy. It describes architectures where multiple data elements are processed in parallel under one instruction stream.
+        While unrelated to computing, SIMD is a real-world acronym match used in UK public policy. So it's fair to mark it true :)
+
+      incorrectFeedback: "Not quite."
+
+
+    - id: misd
+      type: "multiple-select"
+      question: "MISD stands for (select the two correct answers):"
+      options:
+      - "Multiple Instruction, Single Data"
+      - "Marion Independent School District"
+      - "Mixed Instruction, Serial Data"
+      - "Multiple Instruction, Sequential Data"
+      - "Mixed Instruction, Serial Data"
+      answer:
+      - 0
+      - 1
+      correctFeedback: |
+        That's correct. MISD describes architectures where multiple instruction streams operate on the same single data stream.
+        Not quite a computer architecture, but Marion Independent School District does stand for MISD too.
+      incorrectFeedback: "Not quite."
+
+    - id: mimd
+      type: "multiple-choice"
+      question: "MIMD stands for (select the correct answer):"
+      options:
+      - "Model Independant Molecular Dynamics"
+      - "Mixed Instruction, Multiple Data"
+      - "Multiple Instruction, Mixed Data"
+      - "Mixed Instruction, Mixed Data"
+      - "Multiple Instruction, Multiple Data"
+      answer: 4
+      feedback:
+        - "Not quite."
+        - "Not quite."
+        - "Not quite."
+        - "Not quite."
+        - "Correct, multiple instructions tackle multiple data streams simultaneously. It’s the classic model behind most modern multicore processors and distributed systems."
+
+
+    - id: spmd
+      type: "multiple-select"
+      question: "SPMD stands for (select the two correct answers):"
+      options:
+      - "Single Program, Multiple Data"
+      - "Serial Program, Multiple Data"
+      - "Sequentially Parallel, Multiple Data"
+      - "Semipermeable membrane device"
+      answer:
+      - 0
+      - 3
+      correctFeedback: |
+        Correct! It refers to multiple processors running the same program on different pieces of data.
+        On another note, if your CPU suddenly starts filtering molecules instead of processing instructions, you might have accidentally switched to biological engineering. Still a legit acronym, just not computer architecture.
+
+      incorrectFeedback: "Not quite."
+
+
+    - id: pipelining
+      type: "multiple-select"
+      question: "Pipelining...  (select the two correct answers):"
+      options:
+      - "...can be considered MISD"
+      - "...can be more efficient with a greater number of stages in the pipeline"
+      - "...takes advantages of having multiple cores available"
+      - "...provides two threads per core"
+      answer:
+      - 0
+      - 1
+      correctFeedback: |
+        Yes, pipelining breaks down instruction execution into separate stages (like fetch, decode, execute), each handled by different parts of the core, allowing overlap and improved throughput.
+        Pipelining can also be seen as a form of Multiple Instruction, Single Data (MISD), where multiple instructions are processed at different stages but operate on the same data stream. Finally, increasing pipeline stages can improve clock speed and throughput by reducing the work per stage.
+      incorrectFeedback: "Not quite."
+
+    - id: hyperthreading
+      type: "multiple-select"
+      question: "Hyperthreading...  (select the two correct answers):"
+      options:
+      - "...requires the replication of parts of the chip"
+      - "...doubles the computational power"
+      - "...can provide two threads per core"
+      - "...offers significant performance gains for scientific high performance computing "
+      answer:
+      - 0
+      - 2
+      correctFeedback: |
+        Correct, Hyperthreading allows a single physical core to appear as two logical cores to the OS, enabling two threads to be executed concurrently, improving resource utilisation.
+        To support hyperthreading, some parts of the core’s architecture (such as registers and instruction pointers) are duplicated, though major execution units are typically shared.
+      incorrectFeedback: "Not quite."
+
+
+
+

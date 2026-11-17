@@ -1,0 +1,88 @@
+title: "Vectorisation"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+
+    - id: vectorisation
+      type: "multiple-choice"
+      question: "Vectorisation relies on which hardware paradigm from Flynn’s taxonomy:"
+      options:
+      - "MISD"
+      - "MIMD"
+      - "SISD"
+      - "SIMD"
+      answer: 3
+      feedback:
+      - ""
+      - ""
+      - ""
+      - "Correct! Vectorisation is based on the SIMD model from Flynn’s taxonomy. This means a single instruction operates on multiple data elements simultaneously — for example, adding two vectors element-wise in one operation."
+
+    - id: logic-units
+      type: "multiple-select"
+      question: "Relative to a simple scalar machine, a simple vector machine with two arithmetic logic units ... (select all that are true)"
+      options:
+      - "...are always twice as efficient"
+      - "...requires twice the amount of memory moves for vector addition"
+      - "...uses larger registers than a simple scalar machine"
+      - "...can produce twice the computing throughput"
+      answer:
+      - 2
+      - 3
+      correctFeedback: |
+        Correct!
+        With two arithmetic logic units (ALUs), a vector machine can perform two operations per cycle, assuming the data and instructions are available. This effectively doubles the throughput compared to a scalar machine, which processes one operation at a time. 
+        Vector machines typically have wide vector registers that hold multiple data elements (e.g., 128-bit, 256-bit, or 512-bit registers), compared to scalar machines that use much smaller registers (e.g., 32-bit or 64-bit). These wide registers enable the simultaneous execution of operations on entire vectors of data.
+      incorrectFeedback: "Not quite."
+
+
+    - id: loop
+      type: "multiple-choice"
+      question: "For a vectorised for loop, the number of simultaneous iterations of the loop is called the:"
+      options:
+      - "array index"
+      - "vector factor"
+      - "iteration counter"
+      - "unrolling factor"
+      answer: 3
+      feedback:
+      - ""
+      - ""
+      - ""
+      - "Correct! The unrolling factor refers to the number of loop iterations that are executed simultaneously in a vectorised loop. When a loop is vectorised, the compiler (or programmer) transforms the loop so that it performs multiple operations per iteration. This boosts performance by reducing overhead and increasing parallelism."
+
+
+    - id: compilers
+      type: "multiple-choice"
+      question: "Vectorisation is implemented by the compiler, but compilers with often not implement automatic vectorisation due to... (select all that are true)"
+      options:
+      - "...using modern CPUs"
+      - "...compiling with the ‘-march’ flag"
+      - "...branching control flows within the loop "
+      - "...array elements being contiguous in memory"
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "Correct. Control flow statements like if, break, or complex branching logic within a loop make it difficult for the compiler to apply SIMD instructions safely. The compiler may skip vectorisation if it can’t guarantee consistent execution paths or data dependencies across iterations."
+      - ""
+
+
+    - id: logic-units
+      type: "multiple-select"
+      question: "Vectorised operations... (select all that are true)"
+      options:
+      - "...are carried out on vector compute units"
+      - "...typically run on compute units that have slower clock speeds"
+      - "...can only run on GPUs"
+      - "...require more logic than scalar operations"
+      answer:
+      - 0
+      - 1
+      correctFeedback: |
+        Correct, these are specialised hardware blocks designed to execute a single instruction across multiple data elements in parallel. They're distinct from scalar units, which handle one element at a time.
+        They often operate at lower clock speeds than scalar units. However, they compensate by processing multiple data elements simultaneously, resulting in higher throughput for suitable workloads. 
+      incorrectFeedback: "Not quite."

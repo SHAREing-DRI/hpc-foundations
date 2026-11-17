@@ -1,0 +1,104 @@
+title: "Roofline"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+    - id: goal
+      type: "multiple-choice"
+      question: "What is the arithmetic intensity in the roofline model?"
+      options:
+      - "Number of floating point operations per second (one average)."
+      - "Number of floating point operations per instruction (one average)."
+      - "Number of floating point operations per loaded byte (one average)."
+      - "Number of floating point operations per function (one average)."
+      answer: 1
+      feedback:
+      - ""
+      - "Exactly. Arithmetic intensity measures how many floating point operations (FLOPs) are performed per byte of data moved from memory. It reflects the compute-to-memory ratio, which is crucial for understanding performance bottlenecks."
+      - ""
+      - ""
+
+    - id: classifications
+      type: "multiple-select"
+      question: "How does a lot of branching (if blocks) affect the arithmetic intensity (AI)?"
+      options:
+      - "Ifs destroy vectorisation and hence have a negative impact on the AI."
+      - "Ifs count always towards the arithmetic intensity."
+      - "The calculations within the if statement count towards the AI as well."
+      - "If the if is true almost all of the time, then it does not affect the AI."
+      answer:
+      - 2
+      - 3
+      correctFeedback: |
+        Correct!
+        Arithmetic intensity depends on the actual floating point operations performed relative to memory traffic. So, computations inside any executed branch contribute to AI.
+        If the branch is taken consistently, the control flow is predictable, so AI is essentially determined by the operations performed — branching itself doesn’t add overhead.
+      incorrectFeedback: "Not quite."
+
+
+    - id: goal
+      type: "multiple-choice"
+      question: "The horizontal line in the roofline model denotes."
+      options:
+      - "Maximum bandwidth."
+      - "Maximum arithmetic intensity."
+      - "Maximum throughput (calculations per second)."
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "Exactly, the horizontal line represents the peak computational performance, which is the maximum number of calculations the system can perform per second."
+
+    - id: goal
+      type: "multiple-choice"
+      question: "Does switching from double to single precision alter the arithmetic intensity?"
+      options:
+      - "Yes, it doubles the AI, as we perform twice as many calculations per loaded byte."
+      - "No, as long as we still do the same number of calculations."
+      - "Yes, it reduces the AI, as single precision calculations are cheaper."
+      answer: 0
+      feedback:
+      - "Correct. Since single precision data is half the size of double precision (4 bytes vs 8 bytes), loading the same number of bytes means you get twice as many data elements, thus potentially doubling the arithmetic intensity."
+      - ""
+      - ""
+
+    - id: goal
+      type: "multiple-choice"
+      question: "A loop is memory-bound if"
+      options:
+      - "It sits on the crossing point of a horizontal and diagonal line in the roofline."
+      - "It sits on a diagonal in the roofline."
+      - "It sits on a horizontal line in the roofline."
+      answer: 1
+      feedback:
+      - ""
+      - "Correct. A memory-bound loop’s performance is limited by memory bandwidth, represented by the diagonal line. Performance scales with arithmetic intensity until it hits the compute roof."
+      - ""
+
+
+    - id: vn-loop-pc
+      type: "multiple-choice"
+      question: "Given:"
+      code: |
+        for (int i=0; i<256; i++) {
+          r[i] = alpha * a[i] + b[i];
+        }
+
+      question_text: "with 8 bytes per double. Compute the arithmetic intensity. Feel free to ignore the integer arithmetics."
+
+      options:
+        - "3/(2*8)"
+        - "2/(3*8)"
+        - "8/(2*3)"
+        - "None of these"
+
+      answer: 1
+
+      feedback:
+        - ""
+        - "In the given loop, for each iteration there are 2 floating point operations: one multiplication and one addition. The data accessed in each iteration includes: reading one element from array a; reading one element from array b; writing one element to array r. Since each element is a double precision number, it uses 8 bytes. Therefore, each iteration moves 3 elements * 8 bytes, which is 24 bytes of data. The arithmetic intensity is calculated as the number of floating point operations divided by the number of bytes moved, which is 2 divided by 24."
+        - ""
+        - ""
+

@@ -1,0 +1,113 @@
+title: "Strong Scaling"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+    - id: goal
+      type: "multiple-choice"
+      question: "What is the primary goal of strong scaling?"
+      options:
+      - "To increase the size of the problem while keeping the resources constant."
+      - "To improve the efficiency of a single processor."
+      - "To reduce the time to complete a fixed-size problem by adding more resources."
+      - "To optimise memory usage."
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "Correct! Strong scaling aims to solve a fixed-size problem faster by increasing the number of processors or computational resources."
+      - ""
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "In strong scaling, what happens to the problem size as more processors are added?"
+      options:
+      - "The problem size increases proportionally."
+      - "The problem size remains constant."
+      - "The problem size decreases."
+      - "The problem size becomes irrelevant."
+      answer: 1
+      feedback:
+      - ""
+      - "Correct! In strong scaling, the problem size is fixed - it doesn’t grow with the number of processors. The goal is to reduce execution time by distributing the same amount of work across more processors."
+      - ""
+      - ""
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "What is the ideal outcome of strong scaling when doubling the number of processors?"
+      options:
+      - "The time to complete the problem is halved."
+      - "The time to complete the problem remains the same."
+      - "The time to complete the problem doubles."
+      - "The time to complete the problem increases by a factor of four."
+      answer: 0
+      feedback:
+      - "Correct! In ideal strong scaling, doubling the number of processors leads to halving the execution time for a fixed-size problem. This is known as linear speedup, and it represents the best-case scenario where the problem parallelises perfectly, with no overhead from communication, synchronisation, or serial portions of the code."
+      - ""
+      - ""
+      - ""
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "A program takes 64 seconds on a single thread, and 40 seconds on two threads. What is the serial fraction according to Amdahl's law?"
+      options:
+      - "1/4 >= f > 1/8"
+      - "1 >= f > 1/2"
+      - "1/2 >= f > 1/4"
+      - "1/8 >= f"
+      answer: 0
+      feedback:
+      - "Correct! This follows the expected values using Amdahl's Law T(p)=T(1)⋅(f+(1-f)/p); 40=64⋅(f+(1-f)/2); f=0.25"
+      - ""
+      - ""
+      - ""
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "A program takes 64 seconds on a single thread, and 40 seconds on two threads. How long would it take with 64 threads according to Amdahl's Law?"
+      options:
+      - "64s >= t(64) > 32s"
+      - "16s >= t(64) > 8s"
+      - "8s >= t(64)"
+      - "32s >= t(64) > 16s"
+      answer: 3
+      feedback:
+      - ""
+      - ""
+      - ""
+      - "Correct! Using Amdahl’s formula: T(64)=T(1)×(f+(1-f)/64) = 64×(0.25+0.75/64)=16.75 seconds"
+
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "A program takes 64 seconds on a single thread, and 40 seconds on two threads. What is the minimum time the program will run (with infinite threads) according to Amdahl's Law?"
+      options:
+      - "64s >= t(inf) > 32s"
+      - "32s >= t(inf) > 16s"
+      - "16s >= t(inf) > 8s"
+      - "8s >= t(inf)"
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "Correct! With infinite threads, Amdahl’s Law tells us that only the serial portion of the program remains - the parallel part becomes infinitely fast. From previous questions, we established that the serial fraction is 25%, or 0.25. That means even with unlimited parallelism, 25% of the original time will remain: T(∞)=f×T(1)=0.25×64=16 seconds. So, the theoretical minimum time is 16 seconds - it can’t go any lower."
+      - ""
+
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "What is the primary limitation of strong scaling?"
+      options:
+      - "It is limited by the serial fraction of the program."
+      - "It requires a linear increase in problem size with more processors."
+      - "It does not improve performance with more resources."
+      - "It is only applicable to trivial algorithms."
+      answer: 0
+      feedback:
+      - "Correct. The main limitation of strong scaling is that the speedup achievable by adding more processors is fundamentally capped by the part of the program that cannot be parallelised - the serial fraction."
+      - ""
+      - ""
+      - ""

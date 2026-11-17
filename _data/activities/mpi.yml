@@ -1,0 +1,65 @@
+title: "MPI"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+    - id: mpi
+      type: "multiple-choice"
+      question: "MPI stands for..."
+      options:
+      - "Multiple Processing Interface"
+      - "Message Parsing Interlock"
+      - "Message Passing Interface"
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "Correct. This is a standardised and portable message-passing system designed to allow processes to communicate with one another in a parallel computing environment, commonly used in high-performance computing (HPC)."
+
+    - id: mpi-send
+      type: "true-false"
+      question: "MPI_Send is blocking, meaning it returns only once you can safely reuse the buffer."
+      answer: true
+      correctFeedback: "Correct. MPI_Send is a blocking send, which means it returns only when it is safe to reuse the send buffer."
+      incorrectFeedback: ""
+
+    - id: mpi-recv
+      type: "true-false"
+      question: "MPI_Recv is non-blocking, meaning it terminates only after you can read the buffer."
+      answer: false
+      correctFeedback: "Correct, this one is false. MPI_Recv is a blocking receive, not a non-blocking one. It blocks the process until the receive operation has completed — meaning that the data has been fully received and can be safely read from the buffer."
+      incorrectFeedback: ""
+
+
+    - id: correctness
+      type: "multiple-choice"
+      question: "In MPI our primary concern for correctness is"
+      options:
+      - "Data races"
+      - "Communication Overhead"
+      - "Deadlocks"
+      - "Tags"
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "Correct, in MPI, deadlocks are a primary concern for correctness because they can occur when two or more processes are waiting indefinitely for messages from each other — especially when using blocking communication without proper coordination."
+      - ""
+
+    - id: mpi
+      type: "multiple-choice"
+      question: "A one-to-all, synchronizing, collective operation in MPI is a"
+      options:
+      - "MPI_Bcast"
+      - "MPI_Allgather"
+      - "MPI_Reduce"
+      - "MPI_Barrier"
+      answer: 3
+      feedback:
+      - ""
+      - ""
+      - ""
+      - "Correct! MPI_Barrier makes all processes wait until everyone has reached the barrier, ensuring they are synchronised before continuing."
+

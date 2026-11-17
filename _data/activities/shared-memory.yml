@@ -1,0 +1,171 @@
+title: "Shared-Memory Parallel Paradigms"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+
+    - id: true
+      type: "multiple-select"
+      question: "Low- or Mixed-precision computing seeks to improve what aspect(s) of GPU performance?"
+      options:
+      - "In the dynamic multithreading approach, the entire code is always run in parallel, while the number of threads its being run on changes during runtime"
+      - "In the dynamic multithreading approach, we interact with high level libraries to parallelise code"
+      - "In the dynamic multithreading approach, we directly interact with low-level threading libraries to parallelise code"
+      - "In the dynamic multithreading approach, parts of your code are specified as safe to run in parallel"
+      answer:
+      - 1
+      - 3
+      correctFeedback: |
+        Correct!
+        Dynamic multithreading typically relies on high-level libraries or frameworks (like OpenMP) that abstract away the low-level thread management, making it easier to write parallel code.
+        You mark sections of the code as parallel-safe, and the runtime handles how these tasks are distributed.
+      incorrectFeedback: "Not quite."
+
+    - id: true-false
+      type: "true-false"
+      question: "Some parallel languages natively support shared-memory parallelism."
+      answer: true
+      correctFeedback: "That's right! Some parallel programming languages, like OpenMP, Cilk, or languages with built-in concurrency features, natively support shared-memory parallelism. They allow threads or tasks to access the same memory space, which simplifies data sharing across parallel tasks."
+      incorrectFeedback: ""
+
+    - id: options
+      type: "multiple-choice"
+      question: |
+        Put the conceptual steps of Bulk Synchronous Processing in the correct order: 
+        a) Threads may communicate and exchange data with each other. 
+        b) The threads wait at a barrier for all others to finish too and are subsequently fused together (“join”).  
+        c) The threads compute their workload individually and in parallel. 
+        d) The program runs in serial. 
+        e) The program splits up (forks) into multiple threads. 
+      options:
+      - "d), e), c), b), a)"
+      - "a), b), c), d), e)"
+      - "d), e), c), a), b)"
+      - "None of these"
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "Well done! You’ve correctly identified the conceptual flow of Bulk Synchronous Processing. It starts with a serial section, forks into parallel threads, each thread completes its task, synchronises via communication if needed, and finally joins together at a barrier. This model ensures both parallelism and coordination—essential for scalable parallel program."
+      - ""
+
+    - id: superstep
+      type: "multiple-select"
+      question: "Which of the following steps form a 'superstep' in BSP?"
+      options:
+      - "The threads compute their workload individually and in parallel."
+      - "Threads may communicate and exchange data with each other."
+      - "The threads wait at a barrier for all others to finish too and are subsequently fused together ('join')."
+      - "The program runs in serial."
+      - "The program splits up (forks) into multiple threads."
+      answer:
+      - 0
+      - 1
+      - 2
+      correctFeedback: |
+        Correct!
+        Each thread independently performs its local computations before any communication occurs.
+        Communication is also a key part of a superstep, where threads exchange necessary information before synchronising.
+        Finally, this barrier synchronisation ensures that all threads reach the same point before moving to the next superstep, keeping the execution consistent.
+      incorrectFeedback: "Not quite."
+
+    - id: fork-join
+      type: "multiple-select"
+      question: "In fork-join parallelism...  (select the three statements that are true)"
+      options:
+      - "... theads always execute a different piece of code simultaneously."
+      - "... deadlocks can occur"
+      - "... data access protection may be necessary to ensure correctness."
+      - "... threads always execute identical instructions in lockstep"
+      - "... race conditions can occur."
+      answer:
+      - 4
+      - 1
+      - 2
+      correctFeedback: |
+        Correct!
+        If threads wait indefinitely for each other due to improper resource handling, a deadlock can occur.
+        Using locks, mutexes, or other synchronisation tools is often necessary to protect shared data and avoid bugs.
+        Fork-join parallelism can lead to race conditions when threads access shared resources without proper synchronisation.
+      incorrectFeedback: "Not quite."
+
+    - id: parallelism
+      type: "multiple-select"
+      question: "In task parallelism... (select the four statements that are true)"
+      options:
+
+        - "... data access protection may be necessary to ensure correctness "
+        - "... deadlocks can occur"
+        - "... race conditions can occur."
+        - "... threads always execute identical instructions in lockstep."
+        - "... threads always execute the same piece of code in lockstep."
+        - "... theads always execute a different piece of code simultaneously."
+        - "... threads may execute a different piece of code simultaneously."
+      answer:
+      - 0
+      - 1
+      - 2
+      - 6
+      correctFeedback: "Correct! In task parallelism, different threads may execute different pieces of code simultaneously. As with other forms of parallel programming, this can lead to race conditions and deadlocks, and data access protection may be needed to ensure correctness."
+      incorrectFeedback: "Not quite."
+
+
+    - id: race-condition
+      type: "multiple-select"
+      question: "A race condition can occur if...   (select the two statements that are true):"
+      options:
+        - "... one thread tries to write into an address, while a second thread simultaneously tries to read from it ."
+        - "... one CPU is faster than another one"
+        - "... two threads try to write simultaneously into the same address."
+        - "... two threads try to read simultaneously from the same address"
+      answer:
+      - 0
+      - 2
+      correctFeedback: "Correct! If the read happens while a write is in progress, the reading thread may get inconsistent or corrupted data. The final value at the memory location becomes unpredictable because it depends on the order and timing of the writes."
+      incorrectFeedback: "Not quite."
+
+
+    - id: deadlocks
+      type: "multiple-choice"
+      question: "Deadlocks occur...  (select which one is true): "
+      options:
+      - "... only in multithreaded programs."
+      - "... when a CPU waiting for resources crashes."
+      - "... when a core or CPU or thread crashes ('dies') and locks resources."
+      - "... when two or more processes run out of memory and crash."
+      - "... when two or more processes are waiting indefinitely for resources that are held by each other."
+      answer: 4
+      feedback:
+      - ""
+      - ""
+      - ""
+      - ""
+      - "This is the classic and correct definition of a deadlock. It typically involves a circular wait where each process/thread is holding a resource and waiting for another that’s held by another participant in the cycle. None can proceed, leading to an indefinite standstill."
+     
+    - id: access
+      type: "multiple-select"
+      question: "Resource access protection techniques include...  (select which are true):"
+      options:
+        
+        - "Atomic operations"
+        - "Locks"
+        - "Cache coherency"
+        - "Critical sections"
+        - "Deadlocks"
+        - "Semaphores"
+        - "Barriers"
+        - "Mutexes"
+        - "Data races"
+        
+
+      answer:
+      - 7
+      - 5
+      - 0
+      - 1
+      - 3
+
+      correctFeedback: "Correct!"
+      incorrectFeedback: "Not quite."

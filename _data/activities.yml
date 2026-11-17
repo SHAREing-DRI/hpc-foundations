@@ -1,0 +1,162 @@
+von-neumann:
+  title: "Von Neumann Architecture"
+
+  sections:
+
+    - title: "Knowledge"
+      activities:
+
+        - id: vn-components
+          type: "multiple-choice"
+          question: "What are the four core components of the von Neumann architecture?"
+          options:
+            - "Control Unit, ALU, Main Memory, GPU"
+            - "Control Unit, ALU, Main Memory, Bus"
+            - "Control Unit, ALU, Cache Memory, Bus"
+            - "Control Unit, ALU, Secondary Storage, Bus"
+          answer: 1
+          feedback:
+            - "The GPU is a specialised processor for graphics, not a core von Neumann component."
+            - "Correct!"
+            - "Cache memory is not part of the original von Neumann architecture."
+            - "Secondary storage (e.g., hard drives) is external storage, not a core part of the von Neumann architecture, which focuses on RAM as main memory."
+
+
+        - id: vn-alu-fill
+          type: "fill-in-the-blank"
+          question: "ALU stands for"
+          answer: "Arithmetic Logic Unit"
+          words: 3
+
+
+        - id: vn-fetch-compute-store-drag
+          type: "drag-order"
+          question: "Drag the words into the correct boxes"
+          instruction: "The fundamental sequence of steps that must be completed for every calculation is, in order:"
+          items:
+            - "fetch"
+            - "compute"
+            - "store"
+          answer:
+            - "fetch"
+            - "compute"
+            - "store"
+
+
+        - id: vn-same-memory
+          type: "true-false"
+          question: "Data and instructions are held in the same memory."
+          answer: true
+          correctFeedback: "This is a core principle of the von Neumann architecture—both data and instructions are stored in the same memory and accessed via the same bus."
+          incorrectFeedback: "Actually, in von Neumann architecture, both data and instructions share the same memory space."
+
+
+        - id: vn-register
+          type: "true-false"
+          question: "A register can hold more than one value."
+          answer: false
+          correctFeedback: "A register holds a single value at a time."
+          incorrectFeedback: "Registers are small, fast storage locations inside the CPU, but each one holds only a single value at a time."
+
+
+        - id: vn-flops
+          type: "true-false"
+          question: "FLOPs/s means calculations per second."
+          answer: false
+          correctFeedback: "That’s right! FLOPs/s specifically refers to floating-point operations per second, not just any type of calculation."
+          incorrectFeedback: "The term FLOPs/s doesn’t mean general calculations per second—it specifically measures floating-point operations per second."
+
+
+        - id: vn-loop-pc
+          type: "multiple-choice"
+          question: "Given the following simple loop:"
+          code: |
+              for (int i = 0; i < N; i++)  
+
+              It is translated into assembly code as follows:
+
+              0: load 3 into PC  
+              1: 17  
+              2: 40  
+              3: 10  
+              4: 0  
+              10: load 4 into reg A  
+              11: store regA into 1  
+              12: ...  
+              23: load 1 into RegA  
+              24: RegA = RegA + 1  
+              25: load XXX into RegB  
+              26: Compare RegA&lt;RegB
+              27: If true set PC to 12 
+
+          question_text: "What happens after line 3 has terminated?"
+          options:
+            - "Computer continues to read instruction stream at line 10."
+            - "Computer continues to read instruction stream at line 2."
+            - "Computer terminates code"
+          answer: 0
+          feedback:
+            - "Correct! Line 0 loads the address 3 into the program counter (PC), and execution begins at line 3. After completing line 3, the CPU continues execution at the next address — line 10 — as part of the loop’s body."
+            - "Not quite. The load 3 into PC instruction at line 0 explicitly sets the PC to 3, and after that instruction completes, execution continues from line 10, not 2."
+            - "Incorrect. The program does not terminate at this point — it continues execution at the loop body starting at line 10."
+
+
+        - id: vn-loop-memory
+          type: "fill-in-the-blank"
+          question: "Given the following simple loop:"
+          code: |
+            for (int i = 0; i &lt; N; i++)
+
+            It is translated into assembly code as follows:
+
+            0: load 3 into PC
+            1: 17
+            2: 40
+            3: 10
+            4: 0
+            10: load 4 into reg A
+            11: store regA into 1
+            12: ...
+            23: load 1 into RegA
+            24: RegA = RegA + 1
+            25: load XXX into RegB
+            26: Compare RegA &lt; RegB
+            27: If true set PC to 12
+
+          question_text: "Please type in the values stored in 1, 2, 3 and 4 in main memory when the PC becomes 12 for the first time."
+
+          fields:
+            - label: "1 stores the value:"
+              answer: "0"
+            - label: "2 stores the value:"
+              answer: "40"
+            - label: "3 stores the value:"
+              answer: "10"
+            - label: "4 stores the value:"
+              answer: "0"
+
+        - id: vn-loop-limit-fill
+          type: "fill-in-the-blank"
+          question: "Given the following simple loop:"
+          code: |
+            for (int i=0; I<N; i++)  
+
+            It is translated into assembly code as follows:
+
+            0: load 3 into PC  
+            1: 17  
+            2: 40  
+            3: 10  
+            4: 0  
+            10: load 4 into reg A  
+            11: store regA into 1  
+            12: ...  
+            23: load 1 into RegA  
+            24: RegA = RegA + 1  
+            25: load XXX into RegB  
+            26: Compare RegA&lt;RegB 
+            27: If true set PC to 12 
+          question_text: "In line 25 of the assembly code, we have the instruction 'load XXX into RegB'. This value is later used to compare the loop counter with the loop limit in line 26. If the loop is meant to execute exactly 40 times, which memory address should be used for XXX so that RegB contains the loop limit of 40?"
+          answer: "2"
+
+

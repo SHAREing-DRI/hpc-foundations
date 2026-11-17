@@ -1,0 +1,105 @@
+title: "Caches"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+
+    - id: latency
+      type: "true-false"
+      question: "A cache has lower latency than a register."
+      answer: false
+      correctFeedback: "Correct. Registers have the lowest latency in the memory hierarchy—they are located directly inside the CPU core and are accessed in a single cycle. Cache memory, though faster than main memory, still takes a few cycles to access, so it has higher latency than registers."
+      incorrectFeedback: ""
+
+    - id: bandwidth
+      type: "true-false"
+      question: "A cache has a higher bandwidth than the main memory."
+      answer: true
+      correctFeedback: "Cache is physically closer to the CPU and often accessed through a wider or faster bus, so it generally has a higher bandwidth (data per second) than main memory. This is one of the key reasons it improves performance in practice."
+      incorrectFeedback: ""
+
+    - id: bytes
+      type: "true-false"
+      question: "A cache can hold individual bytes."
+      answer: false
+      correctFeedback: "Correct. Cache transfers data in cache lines, typically 32 to 128 bytes, depending on the architecture. Even if you request a single byte, the cache fetches and stores the entire cache line containing that byte."
+      incorrectFeedback: ""
+
+
+    - id: access-rate
+      type: "multiple-choice"
+      question: "A cache access rate is the number of"
+      options:
+      - "Cache accesses per memory access"
+      - "Cache hits per cache access"
+      - "Cache misses per cache access"
+      answer: 0
+      feedback:
+      - "Correct. “Cache access rate” typically refers to how many times the cache is accessed in relation to memory accesses."
+      - ""
+      - ""
+
+
+
+    - id: sort
+      type: drag-sort
+      question: "Cache hit rate"
+      instruction: "Drag each item below into the correct category - either it improves or reduces the cache hit rate."
+      categories:
+        - "Improves Cache Hit Rate"
+        - "Reduces Cache Hit Rate"
+
+      items:
+        - "Loop reusing the same variable"
+        - "Accessing nearby elements in an array"
+        - "High spatial locality"
+        - "Jumping across memory using random indices"
+        - "High temporal locality"
+        - "Very scattered memory access"
+
+      answer:
+        "Loop reusing the same variable": "Improves Cache Hit Rate"
+        "Accessing nearby elements in an array": "Improves Cache Hit Rate"
+        "High spatial locality": "Improves Cache Hit Rate"
+        "Jumping across memory using random indices": "Reduces Cache Hit Rate"
+        "High temporal locality": "Improves Cache Hit Rate"
+        "Very scattered memory access": "Reduces Cache Hit Rate"
+
+
+    - id: cache-level
+      type: "multiple-choice"
+      question: "Note that this question goes beyond the content covered in the lecture. Which of the following cache levels typically split instructions and data?"
+      options:
+      - "L1 cache only"
+      - "L2 cache only"
+      - "L3 cache only"
+      - "All levels split instructions and data"
+      - "No levels split instructions and data"
+      answer: 0
+      feedback:
+      - "On most modern CPUs, the L1 cache is split into an instruction cache (L1i) and a data cache (L1d). L2 and L3 are typically unified, holding both.s"
+      - ""
+      - ""
+      - ""
+      - ""
+
+
+    - id: write-back
+      type: "multiple-choice"
+      question: "Note that this question goes beyond the content covered in the lecture. Which of the following best describes the difference between write-back and write-through caches?"
+      options:
+      - "Write-back caches immediately write data to main memory"
+      - "Write-back caches can be bypassed by the CPU"
+      - "Write-back caches delay memory updates until eviction"
+      - "All levels split instructions and data"
+      - "No levels split instructions and data"
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "This is correct. In a write-back cache, when a value is written, it is only updated in the cache initially. The corresponding location in main memory is not updated until that cache line is evicted (i.e. replaced). This improves performance by reducing memory traffic but introduces complexity when ensuring consistency (e.g. in multi-core systems)."
+
+
+

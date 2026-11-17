@@ -1,0 +1,29 @@
+<div
+  id="activity-modal"
+  class="activity-modal"
+  aria-hidden="true"
+  onclick="closeActivity()"
+>
+
+  <div
+    class="activity-modal-content"
+    onclick="event.stopPropagation();"
+  >
+
+    <button
+      class="activity-close"
+      onclick="closeActivity()"
+      aria-label="Close activity"
+    >
+      ×
+    </button>
+
+    <h2 id="activity-title"></h2>
+
+    <div id="activity-section"></div>
+
+    <div id="activity-content"></div>
+
+  </div>
+
+</div>

@@ -1,0 +1,132 @@
+title: "GPU"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+    - id: gpu-primary
+      type: "multiple-choice"
+      question: "What is the primary function of a GPU?"
+      options:
+      - "To manage system memory"
+      - "To perform uniform mathematical calculations in parallel "
+      - "To handle input/output operations"
+      - "To execute sequential tasks"
+      answer: 1
+      feedback:
+      - ""
+      - "Correct! GPUs are specifically designed to perform many identical or similar operations simultaneously, which makes them highly effective for tasks like graphics rendering, scientific computing, and machine learning."
+      - ""
+      - ""
+
+    - id: classifications
+      type: "multiple-select"
+      question: "Identify all suitable classifications for GPUs under Flynn's Taxonomy:"
+      options:
+      - "MISD"
+      - "MIMD"
+      - "SISD"
+      - "SIMD"
+      answer:
+      - 1
+      - 3
+      correctFeedback: |
+        Correct!
+        GPUs are best known for operating in a SIMD (Single Instruction, Multiple Data) fashion, where the same operation is performed across many data elements in parallel. This is common in graphics and scientific applications.
+        Modern GPUs can also support MIMD (Multiple Instruction, Multiple Data), particularly with more flexible architectures and programming models like CUDA or OpenCL. Each thread or warp can potentially follow its own control flow, though this can reduce efficiency.
+      incorrectFeedback: "Not quite."
+
+    - id: simt
+      type: "multiple-choice"
+      question: "What is the meaning of SIMT?"
+      options:
+      - "Simple Instruction, Multiple Templates"
+      - "Single Instruction, Multiple Tasks"
+      - "Single Instruction, Multiple Threads"
+      - "Single Instruction, Multiple Data"
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "SIMT is designed to manage multiple threads that execute the same instruction while allowing some divergence in control flow. This model helps GPUs balance parallel performance with some flexibility in thread behaviour."
+      - ""
+
+    - id: architecture
+      type: "multiple-choice"
+      question: "Which of the following best describes the architecture of a GPU?"
+      options:
+      - "A specialised processor for handling network traffic"
+      - "A collection of vector units "
+      - "A multi-core processor with a focus on sequential tasks"
+      - "A single core with high clock speed "
+      answer: 1
+      feedback:
+      - ""
+      - "GPUs are composed of many smaller processing elements designed for parallel execution. These units excel at handling operations on large data sets simultaneously, perfect for graphics rendering and parallel computations."
+      - ""
+      - ""
+
+    - id: kernel
+      type: "multiple-choice"
+      question: "GPUs are programmed using kernels. What is a kernel?"
+      options:
+      - "A type of memory storage"
+      - "A function that runs on the GPU"
+      - "A hardware component of the GPU"
+      - "A type of software driver"
+      answer: 1
+      feedback:
+      - ""
+      - "A kernel is a special function written to be executed in parallel on the GPU. When you launch a kernel, many threads run this function simultaneously across the GPU’s cores, enabling massive parallelism."
+      - ""
+      - ""
+
+
+    - id: cpu-gpu
+      type: "multiple-choice"
+      question: "CPUs are considered a low-latency, low-throughput architecture. Compared to a CPU, a GPU is what kind of architecture?"
+      options:
+      - "Low-latency, high-throughput"
+      - "High-latency, low-throughput"
+      - "Low-latency, low-throughput"
+      - "High-latency, high-throughput"
+      answer: 3
+      feedback:
+      - ""
+      - ""
+      - ""
+      - "GPUs are designed to handle many operations in parallel, which means they can achieve very high throughput:  they complete a large volume of work overall. However, each individual task might have to wait longer before it's executed (especially due to memory access or thread scheduling), so latency is higher than on a CPU. This trade-off is acceptable for tasks like graphics rendering or scientific computation, where total throughput matters more than instant response time."
+
+    - id: performance
+      type: "multiple-select"
+      question: "Low- or Mixed-precision computing seeks to improve what aspect(s) of GPU performance?"
+      options:
+      - "Memory bandwidth"
+      - "Power consumption"
+      - "Arithmetic Intensity"
+      - "Latency"
+      answer:
+      - 0
+      - 1
+      - 2
+      correctFeedback: |
+        Correct!
+        Using lower precision means each number takes fewer bytes, so more data fits into the GPU’s limited memory bandwidth. This helps feed the GPU cores faster, improving overall performance.
+        Lower precision arithmetic units consume less power, which is crucial for energy efficiency, especially in large-scale or mobile GPU applications.
+        By reducing data size and speeding up computation, low- or mixed-precision can increase the ratio of computation to memory access (arithmetic intensity), improving GPU utilisation.
+      incorrectFeedback: "Not quite."
+
+    - id: gpu-true-false
+      type: "true-false"
+      question: "True or false: GPUs are designed for thread-specific calculations."
+      answer: false
+      correctFeedback: ""
+      incorrectFeedback: "This would imply that GPUs primarily focus on unique, independent computations per thread, which is not their design goal. They thrive on parallelism with similar instructions applied across threads."
+
+    - id: gpu-true-false
+      type: "true-false"
+      question: "GPUs are designed to handle a wide variety of tasks, including those that require high precision, low latency, serial computations. "
+      answer: false
+      correctFeedback: ""
+      incorrectFeedback: "This would overstate GPU versatility. GPUs are specialised, not general-purpose, and aren’t ideal for every computational need, especially tasks that demand strict low-latency or highly sequential logic."

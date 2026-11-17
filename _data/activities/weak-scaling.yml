@@ -1,0 +1,127 @@
+title: "Weak Scaling"
+
+sections:
+
+  - title: "Knowledge"
+    activities:
+
+    - id: goal
+      type: "multiple-choice"
+      question: "What is the primary goal of weak scaling?"
+      options:
+      - "To improve the efficiency of a single processor."
+      - "To reduce the time to complete a fixed-size problem."
+      - "To scale our problem size with the number of processors."
+      - "To optimise memory usage."
+      answer: 2
+      feedback:
+      - ""
+      - ""
+      - "Correct! Weak scaling measures how well a parallel system can handle increasingly larger problems as more processors are added."
+      - ""
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "The Gustafson-Barsis Law is primarily concerned with which aspect of parallel computing?"
+      options:
+      - "The efficiency of single processor execution."
+      - "The scalability of a program as the number of threads increases."
+      - "The memory usage of a program."
+      - "The latency of a calculation."
+      answer: 1
+      feedback:
+      - ""
+      - "Correct. Rather than assuming a fixed workload, it assumes that as we increase the number of processors (or threads), we scale the problem accordingly."
+      - ""
+      - ""
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "What is the asymptotic efficiency according to the Gustafson-Barsis Law for a program with serial fraction f as the number of threads diverges?"
+      options:
+      - "(1-f)"
+      - "f"
+      - "f/p"
+      - "(1-f)/p"
+      answer: 0
+      feedback:
+      - "Correct! According to the Gustafson-Barsis Law, as the number of processors (or threads) increases, the efficiency of the parallel portion of the program becomes dominant. The asymptotic efficiency approaches (1 − f), where f is the serial fraction of the program. This means that the parallelisable part of the program determines the scalability and effectiveness at large scale, not the serial part — which is a key difference from Amdahl’s Law."
+      - ""
+      - ""
+      - ""
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "Consider a simulation that processes 1,000,000 data points. If weak scaling is employed, and the number of processors doubles, what would be the approximate number of data points each processor would handle?"
+      options:
+      - "half -- 500,000"
+      - "same -- 1,000,000"
+      - "double -- 2,000,000"
+      - "quadruple -- 4,000,000"
+      answer: 1
+      feedback:
+      - ""
+      - "Correct! In weak scaling, the goal is to keep the workload per processor constant as the number of processors increases. This means that when the number of processors doubles, the total problem size also doubles, but each processor still handles the same amount of data."
+      - ""
+      - ""
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "In weak scaling, a perfectly scaling code will use twice as much compute power to?"
+      options:
+      - "Solve the same problem in half the time."
+      - "Solve the same problem with double the precision."
+      - "Solve the problem with half the resources."
+      - "Solve twice the problem in the same time."
+      answer: 3
+      feedback:
+      - ""
+      - ""
+      - ""
+      - "Correct. In weak scaling, the focus is on maintaining constant runtime as the problem size increases proportionally to the number of processors. So if you double the compute power (e.g. double the processors), you can handle twice as much work — but each processor still does the same amount — and the overall time remains roughly the same."
+
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "What factor(s) motivate the use of weak scaling over strong scaling?"
+      options:
+      - "It allows for larger problem sizes without increasing the number of threads."
+      - "It is less limited by the serial fraction of the program."
+      - "It reduces the latency of a calculation."
+      - "It is more applicable to distributed computing environments."
+      answer: 1
+      feedback:
+      - ""
+      - "One of the main motivations for weak scaling is that it mitigates the limitations imposed by the serial fraction, as described by Amdahl’s Law. In strong scaling, performance gains are quickly capped by the part of the program that can’t be parallelised. In contrast, weak scaling assumes that as you increase processors, you also increase the problem size — which makes the parallel portion more dominant, and the serial fraction relatively smaller and less of a bottleneck."
+      - ""
+      - ""
+
+
+    - id: problem-size
+      type: "multiple-choice"
+      question: "A simulation requires 100 seconds to complete. Using the Gustafson-Barsis law, if you double the number of processors, approximately how long would the simulation take?"
+      options:
+      - "same -- 100 seconds"
+      - "half -- 50 seconds"
+      - "double -- 200 seconds"
+      - "Insufficient information"
+      answer: 0
+      feedback:
+      - "Correct! The Gustafson-Barsis Law assumes that problem size scales with the number of processors. So when you double the number of processors, the total workload also doubles, but each processor still handles the same amount of work, meaning the overall runtime stays about the same. The simulation isn’t faster — instead, it does more work in the same time, which is exactly what the Gustafson-Barsis model is designed to describe."
+      - ""
+      - ""
+      - ""
+
+    - id: true-false
+      type: "true-false"
+      question: "True or false: Weak scaling is primarily concerned with the efficiency of a single processor."
+      answer: false
+      correctFeedback: "Correct! Weak scaling is not about how efficiently a single processor performs, but rather how well a parallel system can handle larger workloads as more processors are added."
+      incorrectFeedback: ""
+
+    - id: true-false
+      type: "true-false"
+      question: "True or false: Weak scaling is only applicable to problems that can be divided into smaller subproblems."
+      answer: false
+      correctFeedback: "Correct! While weak scaling works best for problems that can be divided into parallel tasks, it's not strictly limited to such problems. Some tasks may involve communication, coordination, or serial portions, but can still benefit from weak scaling as long as the bulk of the work can scale with more processors."
+      incorrectFeedback: ""

@@ -10,7 +10,7 @@ search: false
 body{background:var(--bg);color:#fff}
 #main{max-width:none!important}
 .wrap{max-width:1720px;margin:0 auto;padding:0 12px}
-.hero{background:linear-gradient(180deg,#6c2a68,#4b1f45);border:1px solid #fff;border-radius:26px;padding:26px 34px;margin:1rem auto 18px;text-align:center;margin-top:2rem;}
+.hero{background:linear-gradient(180deg,#6c2a68,#4b1f45);border:1px solid #fff;border-radius:26px;padding:26px 34px;margin:1rem auto 18px;text-align:center;margin-top:4rem;}
 .hero h1{font-size:28px;font-weight:900;margin:0 0 6px;color:#fff}
 .hero p{margin:4px auto;max-width:820px;font-size:16px;line-height:1.5;color: #f3eee2}
 .hero .meta{font-size:14px;opacity:.85}
